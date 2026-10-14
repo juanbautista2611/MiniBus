@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniBus Zavalla - Iniciar Sesión</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+
+    <!-- BARRA SUPERIOR DISCRETA -->
+    <header class="login-topbar d-flex justify-content-between align-items-center px-4 py-3">
+        <div class="d-flex align-items-center gap-2">
+            <div class="topbar-icon d-flex align-items-center justify-content-center">
+                <i class="bi bi-bus-front-fill text-white"></i>
+            </div>
+            <strong class="text-dark">MiniBus Zavalla</strong>
+        </div>
+        <div class="text-muted small d-none d-md-block">
+            Rosario ↔ Zavalla <span class="mx-2">|</span> Educación que nos mueve
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL EN PANTALLA DIVIDIDA -->
+    <main class="login-main-container container-fluid px-3 px-md-5 d-flex align-items-center">
+        <div class="row w-100 align-items-center justify-content-between g-4">
+
+            <!-- LADO IZQUIERDO: TEXTOS Y BENEFICIOS -->
+            <div class="col-12 col-lg-5 text-column d-none d-lg-block">
+                <div class="mb-4">
+                    <h2 class="display-5 fw-extrabold text-dark line-tight mb-3">
+                        Misma comunidad.<br>
+                        <span class="text-success-brand">Más caminos.</span>
+                    </h2>
+                    <p class="lead text-secondary fs-6">
+                        Conectamos Rosario con la Facultad de Ciencias Agrarias para que llegues más lejos y viajes seguro todos los días.
+                    </p>
+                </div>
+
+                <div class="d-flex flex-column gap-3 mb-5">
+                    <div class="feature-bullet d-flex align-items-center gap-3">
+                        <div class="bullet-icon"><i class="bi bi-mortarboard-fill text-success"></i></div>
+                        <span class="fw-semibold text-dark">Estudiá y trabajá con transporte garantizado</span>
+                    </div>
+                    <div class="feature-bullet d-flex align-items-center gap-3">
+                        <div class="bullet-icon"><i class="bi bi-people-fill text-success"></i></div>
+                        <span class="fw-semibold text-dark">Compartí el viaje con docentes y compañeros</span>
+                    </div>
+                    <div class="feature-bullet d-flex align-items-center gap-3">
+                        <div class="bullet-icon"><i class="bi bi-geo-alt-fill text-success"></i></div>
+                        <span class="fw-semibold text-dark">Llegá a tiempo con horarios coordinados</span>
+                    </div>
+                </div>
+
+                <div class="tagline-badges text-uppercase small text-muted letter-spacing-1">
+                    Personas · Territorio · Oportunidades
+                </div>
+            </div>
+
+            <!-- LADO DERECHO / CENTRO: TARJETA DE AUTHENTICACIÓN -->
+            <div class="col-12 col-lg-5 col-xl-4 mx-auto mx-lg-0">
+                <div class="card auth-card border-0 shadow-lg p-4 p-sm-5 rounded-5 bg-white position-relative">
+
+                    <!-- Logo y Título -->
+                    <div class="text-center mb-4">
+                        <div class="auth-brand-icon mx-auto mb-3 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-bus-front-fill text-white fs-3"></i>
+                        </div>
+                        <h1 class="h4 fw-bold text-dark mb-1">MiniBus Zavalla</h1>
+                        <p class="text-muted small mb-0">Rosario ↔ Facultad FcAgr</p>
+                    </div>
+
+                    <!-- Switch Ingresar / Registro -->
+                    <div class="auth-tabs-wrapper p-1 rounded-pill bg-light d-flex mb-4">
+                        <button type="button" class="btn btn-auth-tab active w-50 rounded-pill py-2 fw-semibold text-white" id="tabIngresar" onclick="switchAuthTab('ingresar')">
+                            Ingresar
+                        </button>
+                        <button type="button" class="btn btn-auth-tab w-50 rounded-pill py-2 fw-semibold text-muted" id="tabRegistro" onclick="switchAuthTab('registro')">
+                            Registrarse
+                        </button>
+                    </div>
+
+                    <!-- BLOQUE 1: FORMULARIO DE INICIAR SESIÓN -->
+                    <div id="blockLogin">
+                        <form id="formLogin" onsubmit="event.preventDefault(); iniciarSesion();">
+                            <div class="mb-3">
+                                <label class="form-label small fw-semibold text-secondary">Correo Electrónico</label>
+                                <div class="input-group input-group-custom">
+                                    <span class="input-group-text bg-white border-end-0">
+                                        <i class="bi bi-envelope text-muted"></i>
+                                    </span>
+                                    <input type="email" id="correoLogin" class="form-control border-start-0 ps-0" placeholder="tu.correo@ejemplo.com" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label small fw-semibold text-secondary">Contraseña</label>
+                                <div class="input-group input-group-custom">
+                                    <span class="input-group-text bg-white border-end-0">
+                                        <i class="bi bi-lock text-muted"></i>
+                                    </span>
+                                    <input type="password" id="contrasenaLogin" class="form-control border-start-0 ps-0" placeholder="••••••••" required>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-submit-auth w-100 py-3 fw-bold rounded-4 shadow-sm d-flex align-items-center justify-content-center gap-2">
+                                <span>Iniciar Sesión</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </form>
+
+                        <div id="mensajeLogin" class="text-danger text-center small fw-bold mt-3"></div>
+                    </div>
+
+                    <!-- BLOQUE 2: FORMULARIO DE REGISTRO (OCULTO INICIALMENTE) -->
+                    <div id="blockRegistro" class="d-none">
+                        <form id="formRegistro" onsubmit="event.preventDefault(); registrarUsuario();" class="d-flex flex-column gap-2">
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <label class="form-label small fw-semibold text-secondary">Nombre</label>
+                                    <input type="text" id="registroNombre" class="form-control form-control-sm" placeholder="Nombre" required>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label small fw-semibold text-secondary">Apellido</label>
+                                    <input type="text" id="registroApellido" class="form-control form-control-sm" placeholder="Apellido" required>
+                                </div>
+                            </div>
+
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <label class="form-label small fw-semibold text-secondary">DNI</label>
+                                    <input type="text" id="registroDni" class="form-control form-control-sm" placeholder="DNI" required>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label small fw-semibold text-secondary">Sector</label>
+                                    <input type="text" id="registroSector" class="form-control form-control-sm" placeholder="Ej: Sistemas" required>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="form-label small fw-semibold text-secondary">Claustro / Tipo</label>
+                                <select id="registroTipoUsuario" class="form-select form-select-sm" required>
+                                    <option value="estudiante">Estudiante</option>
+                                    <option value="docente">Docente</option>
+                                    <option value="no_docente">No Docente</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="form-label small fw-semibold text-secondary">Correo</label>
+                                <input type="email" id="registroCorreo" class="form-control form-control-sm" placeholder="correo@ejemplo.com" required>
+                            </div>
+
+                            <div>
+                                <label class="form-label small fw-semibold text-secondary">Contraseña</label>
+                                <input type="password" id="registroContrasena" class="form-control form-control-sm" placeholder="••••••••" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-submit-auth w-100 py-3 fw-bold rounded-4 shadow-sm mt-2 d-flex align-items-center justify-content-center gap-2">
+                                <span>Crear Cuenta</span>
+                                <i class="bi bi-check-circle-fill"></i>
+                            </button>
+                        </form>
+
+                        <div id="mensajeRegistro" class="text-center small fw-bold mt-3"></div>
+                    </div>
+
+                    <!-- Pie UNR -->
+                    <div class="text-center mt-4 pt-3 border-top small text-muted d-flex align-items-center justify-content-center gap-2">
+                        <span class="badge bg-danger text-white fw-bold px-2 py-1">UNR</span>
+                        <span>Universidad Nacional de Rosario</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- JS de la aplicación -->
+    <script>
+        function switchAuthTab(type) {
+            const btnIngresar = document.getElementById('tabIngresar');
+            const btnRegistro = document.getElementById('tabRegistro');
+            const blockLogin = document.getElementById('blockLogin');
+            const blockRegistro = document.getElementById('blockRegistro');
+
+            if (type === 'ingresar') {
+                btnIngresar.classList.add('active', 'text-white');
+                btnIngresar.classList.remove('text-muted');
+                btnRegistro.classList.remove('active', 'text-white');
+                btnRegistro.classList.add('text-muted');
+
+                blockLogin.classList.remove('d-none');
+                blockRegistro.classList.add('d-none');
+            } else {
+                btnRegistro.classList.add('active', 'text-white');
+                btnRegistro.classList.remove('text-muted');
+                btnIngresar.classList.remove('active', 'text-white');
+                btnIngresar.classList.add('text-muted');
+
+                blockRegistro.classList.remove('d-none');
+                blockLogin.classList.add('d-none');
+            }
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

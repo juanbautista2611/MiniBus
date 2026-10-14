@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - MiniBus Zavalla</title>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-body py-4">
+
+    <div class="container main-app-container">
+
+        <!-- HEADER SUPERIOR -->
+        <header class="card border-0 shadow-sm p-3 p-md-4 mb-4 header-card rounded-4 bg-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon-wrapper d-flex align-items-center justify-content-center">
+                        <i class="bi bi-person-badge-fill text-white fs-4"></i>
+                    </div>
+                    <div>
+                        <h1 class="h5 fw-bold mb-0 text-dark">MiniBus Zavalla</h1>
+                        <small class="text-muted">Mi Perfil y Configuración</small>
+                    </div>
+                </div>
+
+                <button onclick="window.location.href='index.html'" class="btn btn-outline-secondary d-flex align-items-center gap-2 px-3 py-2 rounded-pill fw-semibold">
+                    <i class="bi bi-arrow-left"></i>
+                    <span>Volver al inicio</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="row g-4">
+
+            <!-- COLUMNA IZQUIERDA: DATOS DEL PERFIL -->
+            <div class="col-12 col-lg-5 col-xl-4">
+                <div class="card border-0 shadow-sm p-4 rounded-4 bg-white">
+                    <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom">
+                        <div class="avatar-circle bg-success-subtle text-success d-flex align-items-center justify-content-center rounded-circle fs-3 fw-bold" style="width: 54px; height: 54px;">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div>
+                            <h2 class="h5 fw-bold mb-0 text-dark">Mis Datos</h2>
+                            <small class="text-muted">Información de cuenta</small>
+                        </div>
+                    </div>
+
+                    <div id="datosPerfil" class="d-flex flex-column gap-2 mb-4">
+                        <div class="p-3 text-center text-muted border border-dashed rounded-3">
+                            Cargando información del perfil...
+                        </div>
+                    </div>
+
+                    <button id="btnCerrarSesion" class="btn btn-danger w-100 py-2.5 fw-bold rounded-3 shadow-sm d-flex align-items-center justify-content-center gap-2">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Cerrar sesión</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA: PANEL DE GESTIÓN (ADMIN / CHOFER) -->
+            <div class="col-12 col-lg-7 col-xl-8">
+                <section id="panelGestionAdmin" class="card border-0 shadow-sm p-4 rounded-4 bg-white" style="display: none;">
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h2 class="h5 fw-bold mb-0 text-dark d-flex align-items-center gap-2">
+                                <i class="bi bi-sliders text-success"></i> Panel de Gestión
+                            </h2>
+                            <small class="text-muted">Administración del servicio de transporte</small>
+                        </div>
+                    </div>
+
+                    <!-- SELECTOR DE PESTAÑAS (VIAJES / USUARIOS) -->
+                    <div class="auth-tabs-wrapper p-1 rounded-pill bg-light d-flex mb-4">
+                        <button type="button" id="tabGestionViajes" class="btn btn-auth-tab active w-50 rounded-pill py-2 fw-semibold text-white" onclick="cambiarTabAdmin('viajes')">
+                            <i class="bi bi-calendar-event me-1"></i> Gestión de Viajes
+                        </button>
+                        <button type="button" id="tabGestionUsuarios" class="btn btn-auth-tab w-50 rounded-pill py-2 fw-semibold text-muted" onclick="cambiarTabAdmin('usuarios')">
+                            <i class="bi bi-people me-1"></i> Gestión de Usuarios
+                        </button>
+                    </div>
+
+                    <!-- SECCIÓN 1: GESTIÓN DE VIAJES -->
+                    <div id="seccionGestionViajes">
+                        <button type="button" onclick="crearProximoViaje()" class="btn btn-primary-custom w-100 py-3 fw-bold rounded-3 shadow-sm mb-4 d-flex align-items-center justify-content-center gap-2 fs-6">
+                            <i class="bi bi-plus-circle-fill fs-5"></i>
+                            <span>Habilitar Viaje para Mañana</span>
+                        </button>
+
+                        <h3 class="h6 fw-bold text-dark mb-3">Historial y Estado de Viajes</h3>
+                        <div id="listaViajesAdmin" class="d-flex flex-column gap-2">
+                            <div class="p-3 text-center text-muted border border-dashed rounded-3">
+                                Cargando viajes registrados...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN 2: GESTIÓN DE USUARIOS -->
+                    <div id="seccionGestionUsuarios" style="display: none;">
+                        <h3 class="h6 fw-bold text-dark mb-3">Lista de Usuarios Registrados</h3>
+                        <div id="listaUsuariosAdmin" class="d-flex flex-column gap-2">
+                            <div class="p-3 text-center text-muted border border-dashed rounded-3">
+                                Cargando usuarios registrados...
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="script.js"></script>
+    <script>
+        function cambiarTabAdmin(tab) {
+            const secViajes = document.getElementById("seccionGestionViajes");
+            const secUsuarios = document.getElementById("seccionGestionUsuarios");
+            const tabViajes = document.getElementById("tabGestionViajes");
+            const tabUsuarios = document.getElementById("tabGestionUsuarios");
+
+            if (tab === 'viajes') {
+                secViajes.style.display = "block";
+                secUsuarios.style.display = "none";
+                
+                tabViajes.classList.add("active", "text-white");
+                tabViajes.classList.remove("text-muted");
+                tabUsuarios.classList.remove("active", "text-white");
+                tabUsuarios.classList.add("text-muted");
+            } else {
+                secViajes.style.display = "none";
+                secUsuarios.style.display = "block";
+
+                tabUsuarios.classList.add("active", "text-white");
+                tabUsuarios.classList.remove("text-muted");
+                tabViajes.classList.remove("active", "text-white");
+                tabViajes.classList.add("text-muted");
+
+                if (typeof cargarUsuariosAdmin === "function") {
+                    cargarUsuariosAdmin();
+                }
+            }
+        }
+
+        document.getElementById("btnCerrarSesion").addEventListener("click", async () => {
+            await fetch("/logout", { method: "POST" });
+            window.location.href = "login.html";
+        });
+    </script>
+</body>
+</html>

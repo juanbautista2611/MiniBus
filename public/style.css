@@ -1,0 +1,309 @@
+/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN GENERAL
+   ========================================================================== */
+:root {
+    --brand-primary: #0F5132;
+    --brand-primary-hover: #0a3d24;
+    --brand-accent: #198754;
+    --brand-accent-light: #e8f5e9;
+    --bg-surface: #F8FAFC;
+    --card-bg: #FFFFFF;
+    --border-color: #E2E8F0;
+    --text-primary: #0F172A;
+    --text-muted: #64748B;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: var(--text-primary);
+    background-color: var(--bg-surface);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   2. ESTILOS EXCLUSIVOS: LOGIN.HTML
+   ========================================================================== */
+body.login-page {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: #0F172A;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 45%, rgba(15, 23, 42, 0.15) 100%),
+                url('images/fondo-minibus.jpg') center/cover no-repeat fixed;
+}
+
+.login-topbar {
+    position: relative;
+    z-index: 2;
+}
+
+.topbar-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--brand-primary);
+    border-radius: 8px;
+}
+
+.login-main-container {
+    flex-grow: 1;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.fw-extrabold {
+    font-weight: 800;
+}
+
+.line-tight {
+    line-height: 1.15;
+}
+
+.text-success-brand {
+    color: var(--brand-accent);
+}
+
+.bullet-icon {
+    width: 36px;
+    height: 36px;
+    background-color: #E8F5E9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-card {
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.12) !important;
+}
+
+.auth-brand-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+    border-radius: 18px;
+    box-shadow: 0 8px 18px rgba(15, 81, 50, 0.25);
+}
+
+.auth-tabs-wrapper {
+    background-color: #F1F5F9;
+}
+
+.btn-auth-tab {
+    font-size: 0.9rem;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-auth-tab.active {
+    background: var(--brand-primary) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 2px 8px rgba(15, 81, 50, 0.25);
+}
+
+.btn-submit-auth {
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+    color: #FFFFFF;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-submit-auth:hover {
+    background: linear-gradient(135deg, #0a3d24, var(--brand-primary));
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(15, 81, 50, 0.3);
+    color: #FFFFFF;
+}
+
+/* ==========================================================================
+   3. ESTILOS EXCLUSIVOS: INDEX.HTML Y RESERVAS.HTML
+   ========================================================================== */
+.app-sidebar {
+    width: 250px;
+    min-width: 250px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.sidebar-nav .nav-link {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.92rem;
+    transition: all 0.2s ease;
+}
+
+.sidebar-nav .nav-link:hover {
+    color: var(--text-primary);
+    background-color: #F1F5F9;
+}
+
+.sidebar-nav .nav-link.active {
+    color: var(--brand-primary);
+    background-color: #E8F5E9;
+    font-weight: 600;
+}
+
+.hero-banner {
+    min-height: 180px;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    position: relative;
+}
+
+.hero-viaje, .secondary-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color) !important;
+}
+
+.card-tramo {
+    background: #FFFFFF;
+    border: 2px solid var(--border-color) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-tramo:hover {
+    border-color: #94A3B8 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px -4px rgba(15, 23, 42, 0.06);
+}
+
+.custom-checkbox {
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 8px !important;
+    border: 2px solid #CBD5E1;
+    cursor: pointer;
+}
+
+.custom-checkbox:checked {
+    background-color: var(--brand-accent);
+    border-color: var(--brand-accent);
+}
+
+.progress-custom {
+    height: 6px;
+    border-radius: 999px;
+    background-color: #F1F5F9;
+}
+
+.progress-custom .progress-bar {
+    background-color: var(--brand-accent);
+    border-radius: 999px;
+}
+
+.badge-subtitulo {
+    background-color: #E0E7FF;
+    color: #3730A3;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+/* Timeline de Paradas / Waypoints */
+.itinerario-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 4px;
+}
+
+.timeline-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.timeline-step .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.timeline-step .dot.origin {
+    background-color: var(--brand-accent);
+    box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.2);
+}
+
+.timeline-step .dot.destination {
+    background-color: #EF4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.timeline-line {
+    width: 2px;
+    height: 14px;
+    background-color: #E2E8F0;
+    margin-left: 4px;
+}
+
+/* ==========================================================================
+   4. ESTILOS EXCLUSIVOS: PERFIL.HTML
+   ========================================================================== */
+.brand-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+    border-radius: 12px;
+}
+
+.btn-primary-custom {
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+    color: #FFFFFF;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-primary-custom:hover {
+    background: linear-gradient(135deg, #0a3d24, var(--brand-primary));
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(15, 81, 50, 0.25);
+    color: #FFFFFF;
+}
+
+#datosPerfil p {
+    color: #334155 !important;
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px dashed #E2E8F0;
+}
+
+#datosPerfil p:last-child {
+    border-bottom: none;
+}
+
+#datosPerfil strong {
+    color: #0F172A !important;
+}
+
+#listaUsuariosAdmin .usuario-item,
+#listaViajesAdmin div {
+    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+
+.btn-cancelar-reserva, .btn-eliminar {
+    background-color: #b54737 !important;
+    color: #ffffff !important;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-cancelar-reserva:hover, .btn-eliminar:hover {
+    background-color: #96372f !important;
+}
